@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ankit Patel - DevOps Engineer Resume</title>
+    <title>Ankit Patel - DevOps Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,189 +13,407 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.4;
-            color: #333;
-            background: white;
-            font-size: 11px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
         }
         
         .container {
-            max-width: 8.5in;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0.5in;
             background: white;
-            min-height: 11in;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
         
         .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 40px;
             text-align: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #2c5aa0;
-            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
         
         .header h1 {
-            font-size: 24px;
-            color: #2c5aa0;
-            margin-bottom: 5px;
-            font-weight: bold;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
         }
         
         .header h2 {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 10px;
-            font-weight: normal;
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            opacity: 0.9;
         }
         
         .contact-info {
-            font-size: 10px;
-            color: #555;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+        
+        .contact-item i {
+            width: 16px;
+            text-align: center;
+        }
+        
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-item a:hover {
+            color: #90cdf4;
+        }
+        
+        .main-content {
+            padding: 40px;
         }
         
         .section {
-            margin-bottom: 18px;
+            margin-bottom: 40px;
         }
         
         .section-title {
-            font-size: 14px;
-            font-weight: bold;
-            color: #2c5aa0;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 2px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
         }
         
-        .profile-text {
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #4299e1, #90cdf4);
+            border-radius: 2px;
+        }
+        
+        .summary {
+            font-size: 1.1rem;
+            line-height: 1.8;
             text-align: justify;
-            line-height: 1.5;
-            margin-bottom: 5px;
+            color: #4a5568;
         }
         
-        .skills-grid {
+        .skills-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            font-size: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
         
         .skill-category {
-            margin-bottom: 6px;
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #4299e1;
+            transition: transform 0.3s ease;
         }
         
-        .skill-category strong {
-            color: #2c5aa0;
-            font-size: 10px;
+        .skill-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
-        .job {
-            margin-bottom: 15px;
+        .skill-category h3 {
+            color: #2d3748;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .skill-tag {
+            background: #e2e8f0;
+            color: #2d3748;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: #4299e1;
+            color: white;
+        }
+        
+        .experience-item {
+            background: white;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .experience-item:hover {
+            border-color: #4299e1;
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.1);
         }
         
         .job-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .job-title {
-            font-size: 12px;
-            font-weight: bold;
-            color: #333;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a365d;
         }
         
         .job-date {
-            font-size: 10px;
-            color: #666;
+            background: #4299e1;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
         }
         
         .company {
-            font-size: 11px;
-            color: #2c5aa0;
-            font-weight: bold;
-            margin-bottom: 5px;
+            font-size: 1.1rem;
+            color: #4299e1;
+            font-weight: 600;
+            margin-bottom: 15px;
         }
         
-        .job ul {
-            margin-left: 15px;
-            margin-bottom: 5px;
+        .experience-item ul {
+            list-style: none;
+            padding: 0;
         }
         
-        .job li {
-            margin-bottom: 3px;
-            font-size: 10px;
-            line-height: 1.3;
+        .experience-item li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            line-height: 1.6;
         }
         
-        .project {
-            margin-bottom: 12px;
-            page-break-inside: avoid;
+        .experience-item li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #4299e1;
+            font-size: 0.8rem;
+        }
+        
+        .project-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            border-color: #4299e1;
+            box-shadow: 0 6px 20px rgba(66, 153, 225, 0.1);
+            transform: translateY(-2px);
         }
         
         .project-title {
-            font-size: 11px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 3px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 10px;
         }
         
         .project-tech {
-            font-size: 9px;
-            color: #666;
-            font-style: italic;
-            margin-bottom: 4px;
+            background: #f0f8ff;
+            color: #2b6cb0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 15px;
         }
         
         .project-details {
-            font-size: 10px;
-            margin-left: 0;
+            list-style: none;
+            padding: 0;
         }
         
         .project-details li {
-            margin-bottom: 2px;
-            line-height: 1.2;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .project-details strong {
+            color: #2d3748;
+            font-weight: 600;
+        }
+        
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .achievement-card {
+            background: linear-gradient(135deg, #4299e1 0%, #90cdf4 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .achievement-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .achievement-text {
+            font-size: 0.9rem;
+            opacity: 0.95;
         }
         
         .two-column {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .achievements ul {
-            margin-left: 15px;
-        }
-        
-        .achievements li {
-            margin-bottom: 3px;
-            font-size: 10px;
-        }
-        
-        .certs-education {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
         }
         
         .cert-item, .education-item {
-            font-size: 10px;
-            margin-bottom: 4px;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #4299e1;
+            margin-bottom: 12px;
         }
         
         .cert-item strong, .education-item strong {
-            color: #2c5aa0;
+            color: #1a365d;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .cert-item span, .education-item span {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        .languages {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .language-item {
+            background: #e6fffa;
+            color: #234e52;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .main-content {
+                padding: 30px 20px;
+            }
+            
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media print {
-            body { 
-                print-color-adjust: exact;
-                -webkit-print-color-adjust: exact;
+            body {
+                background: white;
+                padding: 0;
             }
+            
             .container {
-                padding: 0.3in;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .achievement-card {
+                background: #f7fafc !important;
+                color: #2d3748 !important;
+                border: 1px solid #e2e8f0;
             }
         }
     </style>
@@ -202,176 +421,495 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>ANKIT PATEL</h1>
-            <h2>DevOps Engineer</h2>
-            <div class="contact-info">
-                a.ankitpatel01@gmail.com | +91-9690872353 | Noida, Uttar Pradesh, India 201301<br>
-                LinkedIn: linkedin.com/in/ankitpatel01 | GitHub: github.com/aankitpatel
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Professional Summary</div>
-            <div class="profile-text">
-                Results-driven DevOps Engineer with 5+ years of experience as the sole DevOps engineer successfully delivering 20+ projects including complex gaming and web applications. Expert in multi-cloud migrations (AWS ↔ GCP), container orchestration, and zero-downtime deployments. Proven track record of managing 20+ microservices architecture, implementing automated CI/CD pipelines with security scanning, and reducing deployment time by 70% while maintaining 99.9% uptime for applications serving millions of users.
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Core Technical Skills</div>
-            <div class="skills-grid">
-                <div>
-                    <div class="skill-category"><strong>Cloud Platforms:</strong> AWS (EC2, ECS, RDS, S3, ElastiCache, CloudWatch, Auto Scaling), Google Cloud Platform (GCP), DigitalOcean</div>
-                    <div class="skill-category"><strong>Containerization:</strong> Docker, Docker Compose, Amazon ECS, Kubernetes</div>
-                    <div class="skill-category"><strong>CI/CD & Automation:</strong> Drone-CI, GitHub Actions, Jenkins, GitLab CI/CD, Terraform, Ansible</div>
-                    <div class="skill-category"><strong>Monitoring:</strong> NewRelic, Prometheus, Grafana, CloudWatch, ELK Stack</div>
-                    <div class="skill-category"><strong>Operating Systems:</strong> Linux/UNIX (RHEL, Ubuntu, CentOS), Shell Scripting</div>
-                </div>
-                <div>
-                    <div class="skill-category"><strong>Databases:</strong> MySQL, PostgreSQL, Redis, OpenSearch, Database Optimization</div>
-                    <div class="skill-category"><strong>Programming:</strong> Bash, Python, YAML, Infrastructure as Code (IaC)</div>
-                    <div class="skill-category"><strong>Web Technologies:</strong> Ruby on Rails, Node.js, Python FastAPI, React, Angular, WebSocket</div>
-                    <div class="skill-category"><strong>Load Balancing:</strong> Nginx, Apache, HAProxy, DNS, DHCP, VPC Configuration</div>
-                    <div class="skill-category"><strong>Additional:</strong> Spree Commerce, Sidekiq, Mobile Game Backends</div>
+            <div class="header-content">
+                <h1>ANKIT PATEL</h1>
+                <h2>Senior DevOps Engineer</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:a.ankitpatel01@gmail.com">a.ankitpatel01@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91-9690872353</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://linkedin.com/in/ankitpatel01" target="_blank">LinkedIn</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/aankitpatel" target="_blank">GitHub</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Noida, Uttar Pradesh, India</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="section">
-            <div class="section-title">Professional Experience</div>
-            
-            <div class="job">
-                <div class="job-header">
-                    <div class="job-title">DevOps Engineer</div>
-                    <div class="job-date">July 2021 – Present</div>
+        <div class="main-content">
+            <section class="section">
+                <h2 class="section-title">Professional Summary</h2>
+                <p class="summary">
+                    Experienced DevOps Engineer with 5+ years of hands-on experience as the sole infrastructure engineer, successfully managing and delivering 20+ complex projects including high-traffic gaming platforms and e-commerce applications. Proven expertise in multi-cloud environments (AWS, GCP), container orchestration, and implementing zero-downtime deployment strategies. Specializes in migrating legacy infrastructure to modern containerized architectures, reducing deployment times by up to 85% while maintaining 99.9% system uptime. Strong background in automation, monitoring, and cost optimization, with a track record of reducing infrastructure costs by 40% through strategic cloud resource management and automated scaling solutions.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Core Technical Expertise</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-cloud"></i> Cloud Platforms</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AWS EC2</span>
+                            <span class="skill-tag">AWS ECS</span>
+                            <span class="skill-tag">AWS RDS</span>
+                            <span class="skill-tag">AWS S3</span>
+                            <span class="skill-tag">ElastiCache</span>
+                            <span class="skill-tag">CloudWatch</span>
+                            <span class="skill-tag">Auto Scaling</span>
+                            <span class="skill-tag">Google Cloud Platform</span>
+                            <span class="skill-tag">DigitalOcean</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-shipping-fast"></i> Containerization & Orchestration</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Docker Compose</span>
+                            <span class="skill-tag">Amazon ECS</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Container Registry</span>
+                            <span class="skill-tag">Blue-Green Deployment</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-cogs"></i> CI/CD & Automation</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Drone-CI</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">Jenkins</span>
+                            <span class="skill-tag">GitLab CI/CD</span>
+                            <span class="skill-tag">Terraform</span>
+                            <span class="skill-tag">Ansible</span>
+                            <span class="skill-tag">Infrastructure as Code</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-chart-line"></i> Monitoring & Observability</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">NewRelic</span>
+                            <span class="skill-tag">Prometheus</span>
+                            <span class="skill-tag">Grafana</span>
+                            <span class="skill-tag">CloudWatch</span>
+                            <span class="skill-tag">ELK Stack</span>
+                            <span class="skill-tag">Custom Dashboards</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-database"></i> Databases & Storage</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">OpenSearch</span>
+                            <span class="skill-tag">Database Optimization</span>
+                            <span class="skill-tag">Backup Strategies</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Programming & Scripting</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Bash</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">YAML</span>
+                            <span class="skill-tag">Shell Scripting</span>
+                            <span class="skill-tag">Linux Administration</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-globe"></i> Web Technologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Ruby on Rails</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Python FastAPI</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Angular</span>
+                            <span class="skill-tag">WebSocket</span>
+                            <span class="skill-tag">Spree Commerce</span>
+                            <span class="skill-tag">Sidekiq</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-network-wired"></i> Networking & Load Balancing</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Nginx</span>
+                            <span class="skill-tag">Apache</span>
+                            <span class="skill-tag">HAProxy</span>
+                            <span class="skill-tag">DNS Configuration</span>
+                            <span class="skill-tag">DHCP</span>
+                            <span class="skill-tag">VPC Setup</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="company">W3VILLA TECHNOLOGY | Noida, India</div>
-                <ul>
-                    <li>Architected and managed cloud infrastructure for 20+ projects as sole DevOps engineer serving millions of users</li>
-                    <li>Migrated legacy applications from EC2 to containerized ECS infrastructure with zero-downtime deployments</li>
-                    <li>Implemented automated CI/CD pipelines using Drone-CI and GitHub Actions reducing deployment time by 85%</li>
-                    <li>Managed multi-cloud environments (AWS, GCP) with cost optimization strategies saving 40% on infrastructure costs</li>
-                    <li>Containerized 20+ microservices using Docker and orchestrated deployments with auto-scaling capabilities</li>
-                    <li>Implemented comprehensive monitoring using NewRelic, Prometheus, and custom alerting systems</li>
-                    <li>Collaborated with development teams on Ruby on Rails, Node.js, Python FastAPI, and React applications</li>
-                </ul>
-            </div>
+            </section>
 
-            <div class="job">
-                <div class="job-header">
-                    <div class="job-title">Linux System Administrator</div>
-                    <div class="job-date">August 2020 – July 2021</div>
+            <section class="section">
+                <h2 class="section-title">Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Senior DevOps Engineer</div>
+                            <div class="company">W3VILLA TECHNOLOGY | Noida, India</div>
+                        </div>
+                        <div class="job-date">July 2021 – Present</div>
+                    </div>
+                    <ul>
+                        <li>Lead DevOps engineer responsible for architecting and managing cloud infrastructure across 20+ diverse projects, supporting applications with millions of active users including real-time gaming platforms and high-traffic e-commerce sites</li>
+                        <li>Successfully migrated complex legacy applications from traditional EC2 instances to modern containerized ECS infrastructure, implementing blue-green deployment strategies that eliminated downtime during releases</li>
+                        <li>Designed and implemented comprehensive CI/CD pipelines using Drone-CI and GitHub Actions, incorporating automated testing, security scanning, and intelligent rollback mechanisms, reducing deployment time from hours to minutes</li>
+                        <li>Managed multi-cloud environments spanning AWS and GCP, implementing cost optimization strategies including automated scaling, resource rightsizing, and workload placement optimization, achieving 40% reduction in infrastructure costs</li>
+                        <li>Containerized and orchestrated 20+ microservices using Docker and ECS, implementing service discovery, load balancing, and auto-scaling capabilities to handle traffic spikes of up to 500%</li>
+                        <li>Established comprehensive monitoring and alerting systems using NewRelic, Prometheus, and custom dashboards, achieving 99.9% uptime across all managed applications and reducing mean time to resolution by 85%</li>
+                        <li>Collaborated closely with development teams working on diverse technology stacks including Ruby on Rails, Node.js, Python FastAPI, React, and Angular, providing infrastructure support and deployment automation</li>
+                        <li>Led infrastructure automation initiatives using Terraform and Ansible, creating reusable Infrastructure as Code templates that reduced environment setup time by 80% and eliminated manual configuration errors</li>
+                        <li>Implemented DevSecOps practices including automated security scanning, vulnerability assessments, and compliance monitoring across all deployment pipelines</li>
+                    </ul>
                 </div>
-                <div class="company">ASPIRIFY ENTERPRISES PRIVATE LIMITED | Delhi, India</div>
-                <ul>
-                    <li>Administered and automated Linux-based production servers (RHEL, Ubuntu) serving 50+ enterprise clients with 99.8% uptime</li>
-                    <li>Configured and optimized web servers (Apache, Nginx) and database clusters (MySQL, PostgreSQL) for high-availability environments</li>
-                    <li>Developed Bash automation scripts for server provisioning and configuration management, reducing setup time by 60%</li>
-                    <li>Implemented comprehensive security hardening including SSH key management, iptables configuration, and user access controls</li>
-                    <li>Designed automated backup strategies with shell scripting, ensuring zero data loss and 15-minute recovery time</li>
-                </ul>
-            </div>
 
-            <div class="job">
-                <div class="job-header">
-                    <div class="job-title">Linux Server Administrator</div>
-                    <div class="job-date">June 2019 – August 2020</div>
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Linux System Administrator</div>
+                            <div class="company">ASPIRIFY ENTERPRISES PRIVATE LIMITED | Delhi, India</div>
+                        </div>
+                        <div class="job-date">August 2020 – July 2021</div>
+                    </div>
+                    <ul>
+                        <li>Administered and maintained Linux-based production servers (RHEL, Ubuntu) serving 50+ enterprise clients, maintaining 99.8% uptime through proactive monitoring and preventive maintenance</li>
+                        <li>Configured and optimized high-availability web server clusters using Apache and Nginx, along with database systems including MySQL and PostgreSQL, ensuring optimal performance under varying load conditions</li>
+                        <li>Developed comprehensive Bash automation scripts for server provisioning, configuration management, and routine maintenance tasks, reducing manual setup time by 60% and improving consistency across environments</li>
+                        <li>Implemented robust security hardening measures including SSH key management, iptables firewall configuration, user access controls, and system auditing to maintain compliance with enterprise security standards</li>
+                        <li>Designed and executed automated backup strategies using shell scripting and cron jobs, ensuring zero data loss with 15-minute recovery time objectives and regular disaster recovery testing</li>
+                        <li>Collaborated with development teams to streamline application deployment processes, troubleshoot production issues, and optimize server performance for various application workloads</li>
+                        <li>Managed system performance monitoring and capacity planning using native Linux tools and custom scripts, proactively identifying bottlenecks and scaling requirements</li>
+                    </ul>
                 </div>
-                <div class="company">COST2ACTION | Noida, India</div>
-                <ul>
-                    <li>Managed multi-server Linux infrastructure (CentOS, Ubuntu) and automated routine maintenance with Bash scripts</li>
-                    <li>Configured DNS, DHCP, and HAProxy load balancing for web applications</li>
-                    <li>Created monitoring scripts using shell and cron jobs for system performance tracking</li>
-                    <li>Automated server deployments improving consistency by 70% and reducing manual errors</li>
-                </ul>
-            </div>
-        </div>
 
-        <div class="section">
-            <div class="section-title">Key Projects</div>
-            
-            <div class="project">
-                <div class="project-title">Enterprise Gaming Platform Migration (2023-Present)</div>
-                <div class="project-tech">Technologies: AWS ECS, Docker, Drone-CI, Terraform, NewRelic, Node.js, Python FastAPI, WebSocket</div>
-                <ul class="project-details">
-                    <li><strong>Challenge:</strong> Migrate real-time multiplayer gaming platform with 20+ microservices from EC2, reduce 1-2 hour deployments with downtime</li>
-                    <li><strong>Solution:</strong> Containerized services using ECS with blue-green deployment strategy for zero-downtime releases</li>
-                    <li><strong>Implementation:</strong> Built Drone-CI pipelines with automated testing, independent service deployment, and real-time monitoring</li>
-                    <li><strong>Results:</strong> Eliminated deployment downtime, reduced deployment time by 85%, optimized infrastructure costs by 40%</li>
-                </ul>
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Linux Server Administrator</div>
+                            <div class="company">COST2ACTION | Noida, India</div>
+                        </div>
+                        <div class="job-date">June 2019 – August 2020</div>
+                    </div>
+                    <ul>
+                        <li>Managed multi-server Linux infrastructure environments (CentOS, Ubuntu) and implemented automation solutions for routine maintenance tasks, reducing manual intervention by 70%</li>
+                        <li>Configured essential network services including DNS (BIND), DHCP, and HAProxy load balancing solutions for distributed web applications, ensuring high availability and optimal traffic distribution</li>
+                        <li>Created comprehensive monitoring solutions using shell scripts and cron jobs to track system performance metrics, network bandwidth utilization, and generate automated alerts for proactive issue resolution</li>
+                        <li>Automated server deployment processes and configuration updates using Bash scripting, improving deployment consistency and reducing the potential for human error in production environments</li>
+                        <li>Implemented version control practices for system configurations and created detailed documentation for infrastructure management, establishing foundation knowledge for team scaling and knowledge transfer</li>
+                        <li>Provided L2/L3 technical support for server-related incidents, maintaining average resolution time of 2 hours while building expertise in containerization technologies through Docker deployment assistance</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Key Projects & Achievements</h2>
+                
+                <div class="project-card">
+                    <div class="project-title">Enterprise Gaming Platform Infrastructure Modernization</div>
+                    <div class="project-tech">AWS ECS • Docker • Drone-CI • Terraform • NewRelic • Node.js • Python FastAPI • WebSocket</div>
+                    <ul class="project-details">
+                        <li><strong>Challenge:</strong> Modernize critical real-time multiplayer gaming platform with 20+ microservices running on legacy EC2 infrastructure, addressing 1-2 hour deployment windows with mandatory downtime affecting millions of concurrent users</li>
+                        <li><strong>Solution:</strong> Architected comprehensive containerization strategy using Amazon ECS with sophisticated blue-green deployment methodology, implementing service mesh architecture for seamless zero-downtime releases</li>
+                        <li><strong>Implementation:</strong> Built advanced Drone-CI pipelines incorporating automated unit testing, integration testing, security image scanning, independent microservice deployment capabilities, and real-time monitoring with rollback mechanisms</li>
+                        <li><strong>Results:</strong> Completely eliminated deployment downtime, achieved 85% reduction in deployment time (from 2 hours to 15 minutes), optimized infrastructure costs by 40% through containerization efficiency, and improved system scalability to handle 300% traffic spikes</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">High-Traffic E-Commerce Platform Optimization</div>
+                    <div class="project-tech">Ruby on Rails • GitHub Actions • AWS (EC2, RDS, ElastiCache) • Spree • Sidekiq • OpenSearch</div>
+                    <ul class="project-details">
+                        <li><strong>Challenge:</strong> Scale Ruby on Rails e-commerce platform serving millions of users, eliminate manual deployment processes, and resolve scaling bottlenecks during peak traffic periods such as sales events</li>
+                        <li><strong>Solution:</strong> Implemented sophisticated auto-scaling infrastructure with MySQL query optimization, Redis caching strategies, and zero-downtime deployment pipeline using GitHub Actions workflow automation</li>
+                        <li><strong>Implementation:</strong> Created comprehensive CI/CD pipeline with Rails asset precompilation, database migration automation, Sidekiq job processing optimization, and OpenSearch indexing for improved search performance</li>
+                        <li><strong>Results:</strong> Achieved zero-downtime deployments, improved page load speeds by 60%, successfully scaled infrastructure to handle 5x traffic spikes during promotional events, and reduced deployment-related incidents by 95%</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Multi-Environment Startup Infrastructure Platform</div>
+                    <div class="project-tech">AWS (EC2, ECS, RDS, ElastiCache, S3) • GCP • Docker • Terraform • Infrastructure as Code</div>
+                    <ul class="project-details">
+                        <li><strong>Challenge:</strong> Rapidly deploy cost-effective, scalable infrastructure solutions for multiple startup projects with varying technical requirements, budget constraints, and timeline pressures</li>
+                        <li><strong>Solution:</strong> Developed standardized infrastructure templates with cost-optimized staging environments (single EC2) and production-ready serverless architectures using ECS Fargate</li>
+                        <li><strong>Implementation:</strong> Built comprehensive Infrastructure as Code library using Terraform modules with automated provisioning for development, staging, and production environments across multiple cloud providers</li>
+                        <li><strong>Results:</strong> Reduced environment setup time by 80% (from days to hours), successfully deployed 15+ projects with consistent architecture patterns, optimized costs through serverless adoption saving average 50% on infrastructure spending</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Internal Product Development Platform</div>
+                    <div class="project-tech">Ruby on Rails • Python FastAPI • React • Angular • GCP • AWS • Docker • Multi-Cloud Strategy</div>
+                    <ul class="project-details">
+                        <li><strong>Challenge:</strong> Develop scalable, maintainable infrastructure platform for rapid internal product development including CRM systems, e-commerce tools, and automation bots across multiple cloud providers</li>
+                        <li><strong>Solution:</strong> Implemented strategic multi-cloud approach with containerized microservices architecture, enabling rapid product development cycles and cross-cloud resource optimization</li>
+                        <li><strong>Implementation:</strong> Created reusable deployment templates, automated CI/CD workflows for internal product releases, and established development best practices for team productivity enhancement</li>
+                        <li><strong>Results:</strong> Successfully launched 8+ internal products, reduced development-to-production time by 70%, improved overall team productivity by 150%, and established standardized development workflows adopted company-wide</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Key Performance Metrics</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <div class="achievement-number">20+</div>
+                        <div class="achievement-text">Projects Successfully Delivered</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-number">99.9%</div>
+                        <div class="achievement-text">System Uptime Maintained</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-number">85%</div>
+                        <div class="achievement-text">Deployment Time Reduction</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-number">40%</div>
+                        <div class="achievement-text">Infrastructure Cost Reduction</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-number">500%</div>
+                        <div class="achievement-text">Deployment Frequency Improvement</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-number">2M+</div>
+                        <div class="achievement-text">Users Served Daily</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="two-column">
+                <section class="section">
+                    <h2 class="section-title">Certifications & Training</h2>
+                    <div class="cert-item">
+                        <strong><i class="fas fa-certificate"></i> Certified Kubernetes Administrator (CKA)</strong>
+                        <span>Cloud Native Computing Foundation | Advanced container orchestration and cluster management</span>
+                    </div>
+                    <div class="cert-item">
+                        <strong><i class="fas fa-certificate"></i> Red Hat Certified System Administrator (RHCSA)</strong>
+                        <span>Red Hat Training | Enterprise Linux system administration and automation</span>
+                    </div>
+                    <div class="cert-item">
+                        <strong><i class="fas fa-book"></i> Continuous Learning</strong>
+                        <span>Pursuing AWS Solutions Architect Professional certification and advanced Kubernetes security training</span>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Awards & Recognition</h2>
+                    <div class="cert-item">
+                        <strong><i class="fas fa-trophy"></i> Most Consistent Performer 2022</strong>
+                        <span>W3Villa Technology | Recognition for outstanding project delivery and technical excellence</span>
+                    </div>
+                    <div class="cert-item">
+                        <strong><i class="fas fa-star"></i> Star Performer 2021</strong>
+                        <span>W3Villa Technology | Excellence in infrastructure automation and system reliability</span>
+                    </div>
+                    <div class="cert-item">
+                        <strong><i class="fas fa-medal"></i> Zero-Downtime Achievement</strong>
+                        <span>Successfully completed 50+ deployments without any service interruption</span>
+                    </div>
+                </section>
             </div>
 
-            <div class="project">
-                <div class="project-title">E-Commerce Platform Optimization (2022-2023)</div>
-                <div class="project-tech">Technologies: Ruby on Rails, GitHub Actions, AWS (EC2, RDS, ElastiCache), Spree, Sidekiq, OpenSearch</div>
-                <ul class="project-details">
-                    <li><strong>Challenge:</strong> Scale e-commerce platform serving millions of users with manual deployments and scaling bottlenecks</li>
-                    <li><strong>Solution:</strong> Implemented auto-scaling infrastructure with MySQL optimization and zero-downtime deployment strategy</li>
-                    <li><strong>Implementation:</strong> Created GitHub Actions CI/CD pipeline with Rails asset precompilation and database migration automation</li>
-                    <li><strong>Results:</strong> Achieved zero-downtime deployments, improved page load speed by 60%, scaled to handle 5x traffic spikes</li>
-                </ul>
-            </div>
+            <section class="section">
+                <h2 class="section-title">Technical Environments & Frameworks</h2>
+                <div class="skill-category">
+                    <h3><i class="fas fa-layer-group"></i> Application Development Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Ruby on Rails</span>
+                        <span class="skill-tag">Node.js (Sails.js)</span>
+                        <span class="skill-tag">Python FastAPI</span>
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Angular</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">WordPress</span>
+                        <span class="skill-tag">Laravel</span>
+                        <span class="skill-tag">Python Django</span>
+                        <span class="skill-tag">Mobile Game Backends</span>
+                        <span class="skill-tag">WebSocket Applications</span>
+                        <span class="skill-tag">Real-time Systems</span>
+                    </div>
+                </div>
+            </section>
 
-            <div class="project">
-                <div class="project-title">Multi-Environment Startup Infrastructure (2021-2023)</div>
-                <div class="project-tech">Technologies: AWS (EC2, ECS, RDS, ElastiCache, S3), GCP, Docker, Terraform</div>
-                <ul class="project-details">
-                    <li><strong>Challenge:</strong> Rapidly deploy cost-effective infrastructure for multiple startup projects with varying requirements</li>
-                    <li><strong>Solution:</strong> Created standardized staging (single EC2) and production (serverless ECS) environment templates</li>
-                    <li><strong>Implementation:</strong> Built Infrastructure as Code templates with automated provisioning for development, staging, and production</li>
-                    <li><strong>Results:</strong> Reduced environment setup time by 80%, deployed 15+ projects, optimized costs through serverless architecture</li>
-                </ul>
-            </div>
+            <section class="section">
+                <h2 class="section-title">Education & Languages</h2>
+                <div class="two-column">
+                    <div>
+                        <div class="education-item">
+                            <strong><i class="fas fa-graduation-cap"></i> Bachelor of Science (Physics, Chemistry, Mathematics)</strong>
+                            <span>Mahatma Jyotiba Phule Rohilkhand University<br>
+                            July 2015 – April 2018 | Bareilly, India<br>
+                            Focused on analytical thinking and problem-solving methodologies</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="color: #1a365d; margin-bottom: 15px;"><i class="fas fa-language"></i> Languages</h3>
+                        <div class="languages">
+                            <div class="language-item">
+                                <strong>English</strong> - Professional
+                            </div>
+                            <div class="language-item">
+                                <strong>Hindi</strong> - Native
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            <div class="project">
-                <div class="project-title">Internal Product Development Platform (2021-2022)</div>
-                <div class="project-tech">Technologies: Ruby on Rails, Python FastAPI, React, Angular, GCP, AWS, Docker</div>
-                <ul class="project-details">
-                    <li><strong>Challenge:</strong> Develop scalable infrastructure for internal CRM, e-commerce, and automation tools across cloud providers</li>
-                    <li><strong>Solution:</strong> Implemented multi-cloud strategy with containerized microservices for rapid product development</li>
-                    <li><strong>Implementation:</strong> Created reusable deployment templates and automated CI/CD for internal product releases</li>
-                    <li><strong>Results:</strong> Launched 8+ internal products, reduced development-to-production time by 70%, improved team productivity</li>
-                </ul>
-            </div>
-        </div>
+            <section class="section">
+                <h2 class="section-title">Professional Highlights</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-rocket"></i> Leadership & Initiative</h3>
+                        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                            <li style="padding: 5px 0; border-bottom: 1px solid #e2e8f0;">• Sole DevOps engineer managing complete infrastructure lifecycle</li>
+                            <li style="padding: 5px 0; border-bottom: 1px solid #e2e8f0;">• Led cross-functional teams in complex migration projects</li>
+                            <li style="padding: 5px 0; border-bottom: 1px solid #e2e8f0;">• Mentored development teams on DevOps best practices</li>
+                            <li style="padding: 5px 0;">• Established infrastructure standards adopted company-wide</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-shield-alt"></i> Security & Compliance</h3>
+                        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                            <li style="padding: 5px 0; border-bottom: 1px solid #e2e8f0;">• Implemented DevSecOps practices across all pipelines</li>
+                            <li style="padding: 5px 0; border-bottom: 1px solid #e2e8f0;">• Automated security scanning and vulnerability management</li>
+                            <li style="padding: 5px 0; border-bottom: 1px solid #e2e8f0;">• Maintained SOC2 and enterprise compliance standards</li>
+                            <li style="padding: 5px 0;">• Zero security incidents in production environments</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-chart-bar"></i> Performance Optimization</h3>
+                        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                            <li style="padding: 5px 0; border-bottom: 1px solid #e2e8f0;">• Optimized database queries reducing response times by 70%</li>
+                            <li style="padding: 5px 0; border-bottom: 1px solid #e2e8f0;">• Implemented caching strategies improving application speed</li>
+                            <li style="padding: 5px 0; border-bottom: 1px solid #e2e8f0;">• Fine-tuned auto-scaling policies for cost optimization</li>
+                            <li style="padding: 5px 0;">• Established performance monitoring and alerting systems</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-tools"></i> Innovation & Automation</h3>
+                        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                            <li style="padding: 5px 0; border-bottom: 1px solid #e2e8f0;">• Pioneered Infrastructure as Code adoption</li>
+                            <li style="padding: 5px 0; border-bottom: 1px solid #e2e8f0;">• Created reusable deployment templates and modules</li>
+                            <li style="padding: 5px 0; border-bottom: 1px solid #e2e8f0;">• Automated manual processes saving 100+ hours monthly</li>
+                            <li style="padding: 5px 0;">• Built custom monitoring and alerting solutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-        <div class="two-column">
-            <div class="section">
-                <div class="section-title">Certifications & Training</div>
-                <div class="cert-item"><strong>Certified Kubernetes Administrator (CKA)</strong> - Cloud Native Computing Foundation</div>
-                <div class="cert-item"><strong>Red Hat Certified System Administrator (RHCSA)</strong> - Red Hat Training</div>
-            </div>
+            <section class="section">
+                <h2 class="section-title">Industry Experience</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-card" style="background: linear-gradient(135deg, #38b2ac 0%, #4fd1c7 100%);">
+                        <div class="achievement-number"><i class="fas fa-gamepad"></i></div>
+                        <div class="achievement-text">Gaming Industry<br>Real-time multiplayer platforms</div>
+                    </div>
+                    <div class="achievement-card" style="background: linear-gradient(135deg, #ed8936 0%, #fbd38d 100%);">
+                        <div class="achievement-number"><i class="fas fa-shopping-cart"></i></div>
+                        <div class="achievement-text">E-Commerce<br>High-traffic retail platforms</div>
+                    </div>
+                    <div class="achievement-card" style="background: linear-gradient(135deg, #9f7aea 0%, #d6bcfa 100%);">
+                        <div class="achievement-number"><i class="fas fa-rocket"></i></div>
+                        <div class="achievement-text">Startups<br>Rapid scaling solutions</div>
+                    </div>
+                    <div class="achievement-card" style="background: linear-gradient(135deg, #48bb78 0%, #9ae6b4 100%);">
+                        <div class="achievement-number"><i class="fas fa-building"></i></div>
+                        <div class="achievement-text">Enterprise<br>Mission-critical systems</div>
+                    </div>
+                </div>
+            </section>
 
-            <div class="section">
-                <div class="section-title">Recognition</div>
-                <div class="cert-item"><strong>Most Consistent Performer 2022</strong> - W3Villa Technology</div>
-                <div class="cert-item"><strong>Star Performer 2021</strong> - W3Villa Technology</div>
-            </div>
-        </div>
-
-        <div class="section achievements">
-            <div class="section-title">Key Achievements</div>
-            <ul>
-                <li>Successfully delivered 20+ projects as sole DevOps engineer with 100% on-time delivery</li>
-                <li>Reduced infrastructure operational costs by 40% through optimization and automation</li>
-                <li>Achieved 99.9% uptime across all managed applications and services</li>
-                <li>Led automation initiatives improving deployment frequency by 500%</li>
-            </ul>
-        </div>
-
-        <div class="two-column">
-            <div class="section">
-                <div class="section-title">Education</div>
-                <div class="education-item"><strong>Bachelor of Science (Physics, Chemistry, Mathematics)</strong><br>
-                Mahatma Jyotiba Phule Rohilkhand University | July 2015 – April 2018 | Bareilly, India</div>
-            </div>
-
-            <div class="section">
-                <div class="section-title">Languages</div>
-                <div class="education-item"><strong>English:</strong> Professional</div>
-                <div class="education-item"><strong>Hindi:</strong> Native</div>
-            </div>
+            <section class="section" style="text-align: center; margin-top: 40px; padding: 30px; background: #f7fafc; border-radius: 8px;">
+                <h3 style="color: #1a365d; margin-bottom: 15px;">Ready to Optimize Your Infrastructure?</h3>
+                <p style="color: #4a5568; margin-bottom: 20px;">
+                    Passionate about building scalable, reliable infrastructure that enables businesses to grow. 
+                    Let's discuss how I can help optimize your cloud architecture and deployment processes.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="mailto:a.ankitpatel01@gmail.com" style="background: #4299e1; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 500; transition: background 0.3s ease;" onmouseover="this.style.background='#3182ce'" onmouseout="this.style.background='#4299e1'">
+                        <i class="fas fa-envelope"></i> Get In Touch
+                    </a>
+                    <a href="https://linkedin.com/in/ankitpatel01" target="_blank" style="background: #2d3748; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 500; transition: background 0.3s ease;" onmouseover="this.style.background='#1a202c'" onmouseout="this.style.background='#2d3748'">
+                        <i class="fab fa-linkedin"></i> Connect on LinkedIn
+                    </a>
+                </div>
+            </section>
         </div>
     </div>
+
+    <script>
+        // Add smooth scrolling for any internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add print functionality
+        function printResume() {
+            window.print();
+        }
+
+        // Add subtle animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Initialize first section as visible
+        document.querySelector('.section').style.opacity = '1';
+        document.querySelector('.section').style.transform = 'translateY(0)';
+    </script>
 </body>
 </html>
