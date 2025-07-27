@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankit Patel - DevOps Engineer Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            background: white;
+            font-size: 11px;
+        }
+        
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+            min-height: 11in;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c5aa0;
+            padding-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            color: #2c5aa0;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .header h2 {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+        
+        .contact-info {
+            font-size: 10px;
+            color: #555;
+        }
+        
+        .section {
+            margin-bottom: 18px;
+        }
+        
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c5aa0;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 2px;
+        }
+        
+        .profile-text {
+            text-align: justify;
+            line-height: 1.5;
+            margin-bottom: 5px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 10px;
+        }
+        
+        .skill-category {
+            margin-bottom: 6px;
+        }
+        
+        .skill-category strong {
+            color: #2c5aa0;
+            font-size: 10px;
+        }
+        
+        .job {
+            margin-bottom: 15px;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        
+        .job-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .job-date {
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .company {
+            font-size: 11px;
+            color: #2c5aa0;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .job ul {
+            margin-left: 15px;
+            margin-bottom: 5px;
+        }
+        
+        .job li {
+            margin-bottom: 3px;
+            font-size: 10px;
+            line-height: 1.3;
+        }
+        
+        .project {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+        
+        .project-title {
+            font-size: 11px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 3px;
+        }
+        
+        .project-tech {
+            font-size: 9px;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 4px;
+        }
+        
+        .project-details {
+            font-size: 10px;
+            margin-left: 0;
+        }
+        
+        .project-details li {
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .achievements ul {
+            margin-left: 15px;
+        }
+        
+        .achievements li {
+            margin-bottom: 3px;
+            font-size: 10px;
+        }
+        
+        .certs-education {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .cert-item, .education-item {
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+        
+        .cert-item strong, .education-item strong {
+            color: #2c5aa0;
+        }
+        
+        @media print {
+            body { 
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .container {
+                padding: 0.3in;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ANKIT PATEL</h1>
+            <h2>DevOps Engineer</h2>
+            <div class="contact-info">
+                a.ankitpatel01@gmail.com | +91-9690872353 | Noida, Uttar Pradesh, India 201301<br>
+                LinkedIn: linkedin.com/in/ankitpatel01 | GitHub: github.com/aankitpatel
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Professional Summary</div>
+            <div class="profile-text">
+                Results-driven DevOps Engineer with 5+ years of experience as the sole DevOps engineer successfully delivering 20+ projects including complex gaming and web applications. Expert in multi-cloud migrations (AWS ↔ GCP), container orchestration, and zero-downtime deployments. Proven track record of managing 20+ microservices architecture, implementing automated CI/CD pipelines with security scanning, and reducing deployment time by 70% while maintaining 99.9% uptime for applications serving millions of users.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Core Technical Skills</div>
+            <div class="skills-grid">
+                <div>
+                    <div class="skill-category"><strong>Cloud Platforms:</strong> AWS (EC2, ECS, RDS, S3, ElastiCache, CloudWatch, Auto Scaling), Google Cloud Platform (GCP), DigitalOcean</div>
+                    <div class="skill-category"><strong>Containerization:</strong> Docker, Docker Compose, Amazon ECS, Kubernetes</div>
+                    <div class="skill-category"><strong>CI/CD & Automation:</strong> Drone-CI, GitHub Actions, Jenkins, GitLab CI/CD, Terraform, Ansible</div>
+                    <div class="skill-category"><strong>Monitoring:</strong> NewRelic, Prometheus, Grafana, CloudWatch, ELK Stack</div>
+                    <div class="skill-category"><strong>Operating Systems:</strong> Linux/UNIX (RHEL, Ubuntu, CentOS), Shell Scripting</div>
+                </div>
+                <div>
+                    <div class="skill-category"><strong>Databases:</strong> MySQL, PostgreSQL, Redis, OpenSearch, Database Optimization</div>
+                    <div class="skill-category"><strong>Programming:</strong> Bash, Python, YAML, Infrastructure as Code (IaC)</div>
+                    <div class="skill-category"><strong>Web Technologies:</strong> Ruby on Rails, Node.js, Python FastAPI, React, Angular, WebSocket</div>
+                    <div class="skill-category"><strong>Load Balancing:</strong> Nginx, Apache, HAProxy, DNS, DHCP, VPC Configuration</div>
+                    <div class="skill-category"><strong>Additional:</strong> Spree Commerce, Sidekiq, Mobile Game Backends</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Professional Experience</div>
+            
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">DevOps Engineer</div>
+                    <div class="job-date">July 2021 – Present</div>
+                </div>
+                <div class="company">W3VILLA TECHNOLOGY | Noida, India</div>
+                <ul>
+                    <li>Architected and managed cloud infrastructure for 20+ projects as sole DevOps engineer serving millions of users</li>
+                    <li>Migrated legacy applications from EC2 to containerized ECS infrastructure with zero-downtime deployments</li>
+                    <li>Implemented automated CI/CD pipelines using Drone-CI and GitHub Actions reducing deployment time by 85%</li>
+                    <li>Managed multi-cloud environments (AWS, GCP) with cost optimization strategies saving 40% on infrastructure costs</li>
+                    <li>Containerized 20+ microservices using Docker and orchestrated deployments with auto-scaling capabilities</li>
+                    <li>Implemented comprehensive monitoring using NewRelic, Prometheus, and custom alerting systems</li>
+                    <li>Collaborated with development teams on Ruby on Rails, Node.js, Python FastAPI, and React applications</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">Linux System Administrator</div>
+                    <div class="job-date">August 2020 – July 2021</div>
+                </div>
+                <div class="company">ASPIRIFY ENTERPRISES PRIVATE LIMITED | Delhi, India</div>
+                <ul>
+                    <li>Administered and automated Linux-based production servers (RHEL, Ubuntu) serving 50+ enterprise clients with 99.8% uptime</li>
+                    <li>Configured and optimized web servers (Apache, Nginx) and database clusters (MySQL, PostgreSQL) for high-availability environments</li>
+                    <li>Developed Bash automation scripts for server provisioning and configuration management, reducing setup time by 60%</li>
+                    <li>Implemented comprehensive security hardening including SSH key management, iptables configuration, and user access controls</li>
+                    <li>Designed automated backup strategies with shell scripting, ensuring zero data loss and 15-minute recovery time</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">Linux Server Administrator</div>
+                    <div class="job-date">June 2019 – August 2020</div>
+                </div>
+                <div class="company">COST2ACTION | Noida, India</div>
+                <ul>
+                    <li>Managed multi-server Linux infrastructure (CentOS, Ubuntu) and automated routine maintenance with Bash scripts</li>
+                    <li>Configured DNS, DHCP, and HAProxy load balancing for web applications</li>
+                    <li>Created monitoring scripts using shell and cron jobs for system performance tracking</li>
+                    <li>Automated server deployments improving consistency by 70% and reducing manual errors</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Key Projects</div>
+            
+            <div class="project">
+                <div class="project-title">Enterprise Gaming Platform Migration (2023-Present)</div>
+                <div class="project-tech">Technologies: AWS ECS, Docker, Drone-CI, Terraform, NewRelic, Node.js, Python FastAPI, WebSocket</div>
+                <ul class="project-details">
+                    <li><strong>Challenge:</strong> Migrate real-time multiplayer gaming platform with 20+ microservices from EC2, reduce 1-2 hour deployments with downtime</li>
+                    <li><strong>Solution:</strong> Containerized services using ECS with blue-green deployment strategy for zero-downtime releases</li>
+                    <li><strong>Implementation:</strong> Built Drone-CI pipelines with automated testing, independent service deployment, and real-time monitoring</li>
+                    <li><strong>Results:</strong> Eliminated deployment downtime, reduced deployment time by 85%, optimized infrastructure costs by 40%</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <div class="project-title">E-Commerce Platform Optimization (2022-2023)</div>
+                <div class="project-tech">Technologies: Ruby on Rails, GitHub Actions, AWS (EC2, RDS, ElastiCache), Spree, Sidekiq, OpenSearch</div>
+                <ul class="project-details">
+                    <li><strong>Challenge:</strong> Scale e-commerce platform serving millions of users with manual deployments and scaling bottlenecks</li>
+                    <li><strong>Solution:</strong> Implemented auto-scaling infrastructure with MySQL optimization and zero-downtime deployment strategy</li>
+                    <li><strong>Implementation:</strong> Created GitHub Actions CI/CD pipeline with Rails asset precompilation and database migration automation</li>
+                    <li><strong>Results:</strong> Achieved zero-downtime deployments, improved page load speed by 60%, scaled to handle 5x traffic spikes</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <div class="project-title">Multi-Environment Startup Infrastructure (2021-2023)</div>
+                <div class="project-tech">Technologies: AWS (EC2, ECS, RDS, ElastiCache, S3), GCP, Docker, Terraform</div>
+                <ul class="project-details">
+                    <li><strong>Challenge:</strong> Rapidly deploy cost-effective infrastructure for multiple startup projects with varying requirements</li>
+                    <li><strong>Solution:</strong> Created standardized staging (single EC2) and production (serverless ECS) environment templates</li>
+                    <li><strong>Implementation:</strong> Built Infrastructure as Code templates with automated provisioning for development, staging, and production</li>
+                    <li><strong>Results:</strong> Reduced environment setup time by 80%, deployed 15+ projects, optimized costs through serverless architecture</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <div class="project-title">Internal Product Development Platform (2021-2022)</div>
+                <div class="project-tech">Technologies: Ruby on Rails, Python FastAPI, React, Angular, GCP, AWS, Docker</div>
+                <ul class="project-details">
+                    <li><strong>Challenge:</strong> Develop scalable infrastructure for internal CRM, e-commerce, and automation tools across cloud providers</li>
+                    <li><strong>Solution:</strong> Implemented multi-cloud strategy with containerized microservices for rapid product development</li>
+                    <li><strong>Implementation:</strong> Created reusable deployment templates and automated CI/CD for internal product releases</li>
+                    <li><strong>Results:</strong> Launched 8+ internal products, reduced development-to-production time by 70%, improved team productivity</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div class="section">
+                <div class="section-title">Certifications & Training</div>
+                <div class="cert-item"><strong>Certified Kubernetes Administrator (CKA)</strong> - Cloud Native Computing Foundation</div>
+                <div class="cert-item"><strong>Red Hat Certified System Administrator (RHCSA)</strong> - Red Hat Training</div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Recognition</div>
+                <div class="cert-item"><strong>Most Consistent Performer 2022</strong> - W3Villa Technology</div>
+                <div class="cert-item"><strong>Star Performer 2021</strong> - W3Villa Technology</div>
+            </div>
+        </div>
+
+        <div class="section achievements">
+            <div class="section-title">Key Achievements</div>
+            <ul>
+                <li>Successfully delivered 20+ projects as sole DevOps engineer with 100% on-time delivery</li>
+                <li>Reduced infrastructure operational costs by 40% through optimization and automation</li>
+                <li>Achieved 99.9% uptime across all managed applications and services</li>
+                <li>Led automation initiatives improving deployment frequency by 500%</li>
+            </ul>
+        </div>
+
+        <div class="two-column">
+            <div class="section">
+                <div class="section-title">Education</div>
+                <div class="education-item"><strong>Bachelor of Science (Physics, Chemistry, Mathematics)</strong><br>
+                Mahatma Jyotiba Phule Rohilkhand University | July 2015 – April 2018 | Bareilly, India</div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Languages</div>
+                <div class="education-item"><strong>English:</strong> Professional</div>
+                <div class="education-item"><strong>Hindi:</strong> Native</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
