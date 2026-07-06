@@ -66,6 +66,7 @@ const counterObserver = new IntersectionObserver(
       const isDecimal = !Number.isInteger(target);
       const duration = 1400;
       const start = performance.now();
+      el.textContent = (isDecimal ? (0).toFixed(1) : 0) + suffix;
 
       function step(now) {
         const progress = Math.min((now - start) / duration, 1);
