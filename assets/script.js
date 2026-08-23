@@ -14,7 +14,7 @@ if (navToggle && navLinks) {
   });
 }
 
-// Typewriter effect (reusable: drives the hero role line and the blog drafts line)
+// Typewriter effect (drives the hero role line)
 function startTypewriter(elId, lines, pauseMs) {
   const el = document.getElementById(elId);
   if (!el) return;
@@ -52,17 +52,6 @@ startTypewriter(
   1600
 );
 
-startTypewriter(
-  "blogTypewriter",
-  [
-    "vim rag-pipeline-on-k8s-under-50.md",
-    "vim devsecops-gates-github-actions.md",
-    "vim mlops-from-scratch-mlflow-dvc.md",
-    "vim why-solo-devops-taught-me-more.md",
-  ],
-  1400
-);
-
 // Animated counters
 const counters = document.querySelectorAll(".stat-num");
 const counterObserver = new IntersectionObserver(
@@ -95,7 +84,7 @@ counters.forEach((el) => counterObserver.observe(el));
 // Fade-in on scroll for cards
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealTargets = document.querySelectorAll(
-  ".skill-card, .project-card, .cert-card, .learning-card, .timeline-item, .blog-construction, .post-preview, .snapshot-card, .snapshot-photo-wrap"
+  ".skill-card, .project-card, .cert-card, .timeline-item, .post-preview, .snapshot-card, .snapshot-photo-wrap"
 );
 
 if (!prefersReducedMotion && "IntersectionObserver" in window) {
