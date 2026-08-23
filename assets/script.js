@@ -84,7 +84,7 @@ counters.forEach((el) => counterObserver.observe(el));
 // Fade-in on scroll for cards
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealTargets = document.querySelectorAll(
-  ".skill-card, .project-card, .cert-card, .timeline-item, .post-preview, .snapshot-card, .snapshot-photo-wrap"
+  ".skill-card, .project-card, .cert-card, .timeline-item, .snapshot-card, .snapshot-photo-wrap"
 );
 
 if (!prefersReducedMotion && "IntersectionObserver" in window) {

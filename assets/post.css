@@ -32,6 +32,19 @@
   border-bottom: 1px solid var(--border);
 }
 .post-meta .sep { margin: 0 0.6rem; }
+.post-meta-line { margin-top: 0.4rem; }
+.post-meta-line:first-child { margin-top: 0; }
+
+.diagram-slot {
+  margin: 2rem 0 2.5rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
 
 .post-body { color: var(--text-dim); font-size: 1.02rem; line-height: 1.75; }
 .post-body h2 { font-family: var(--font-mono); color: var(--text); font-size: 1.35rem; margin: 2.5rem 0 1rem; }
@@ -41,6 +54,7 @@
 .post-body strong { color: var(--text); }
 .post-body a { color: var(--cyan); }
 .post-body a:hover { text-decoration: underline; }
+.post-body code { font-family: var(--font-mono); background: rgba(255, 255, 255, 0.06); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.9em; color: var(--text); }
 .post-closing { border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 2rem; color: var(--text-dim); }
 
 /* ARCHITECTURE DIAGRAM */
