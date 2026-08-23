@@ -14,17 +14,10 @@ if (navToggle && navLinks) {
   });
 }
 
-// Typewriter effect
-const lines = [
-  "Cloud Architect",
-  "MLOps Engineer",
-  "DevSecOps Practitioner",
-  "Kubernetes Administrator",
-];
-const typewriterEl = document.getElementById("typewriter");
-
-function typewriter() {
-  if (!typewriterEl) return;
+// Typewriter effect (reusable: drives the hero role line and the blog drafts line)
+function startTypewriter(elId, lines, pauseMs) {
+  const el = document.getElementById(elId);
+  if (!el) return;
   let lineIndex = 0;
   let charIndex = 0;
   let deleting = false;
@@ -34,15 +27,15 @@ function typewriter() {
 
     if (!deleting) {
       charIndex++;
-      typewriterEl.textContent = current.slice(0, charIndex);
+      el.textContent = current.slice(0, charIndex);
       if (charIndex === current.length) {
         deleting = true;
-        setTimeout(tick, 1600);
+        setTimeout(tick, pauseMs);
         return;
       }
     } else {
       charIndex--;
-      typewriterEl.textContent = current.slice(0, charIndex);
+      el.textContent = current.slice(0, charIndex);
       if (charIndex === 0) {
         deleting = false;
         lineIndex = (lineIndex + 1) % lines.length;
@@ -52,7 +45,23 @@ function typewriter() {
   }
   tick();
 }
-typewriter();
+
+startTypewriter(
+  "typewriter",
+  ["Cloud Architect", "MLOps Engineer", "DevSecOps Practitioner", "Kubernetes Administrator"],
+  1600
+);
+
+startTypewriter(
+  "blogTypewriter",
+  [
+    "vim rag-pipeline-on-k8s-under-50.md",
+    "vim devsecops-gates-github-actions.md",
+    "vim mlops-from-scratch-mlflow-dvc.md",
+    "vim why-solo-devops-taught-me-more.md",
+  ],
+  1400
+);
 
 // Animated counters
 const counters = document.querySelectorAll(".stat-num");
@@ -86,7 +95,7 @@ counters.forEach((el) => counterObserver.observe(el));
 // Fade-in on scroll for cards
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealTargets = document.querySelectorAll(
-  ".skill-card, .project-card, .cert-card, .learning-card, .timeline-item, .blog-card"
+  ".skill-card, .project-card, .cert-card, .learning-card, .timeline-item, .blog-construction, .post-preview, .snapshot-card, .snapshot-photo-wrap"
 );
 
 if (!prefersReducedMotion && "IntersectionObserver" in window) {
@@ -118,6 +127,7 @@ if (!prefersReducedMotion && "IntersectionObserver" in window) {
 // Nav active-link scroll-spy
 const navAnchors = Array.from(document.querySelectorAll(".nav-links a"));
 const spySections = navAnchors
+  .filter((a) => a.getAttribute("href").startsWith("#"))
   .map((a) => document.querySelector(a.getAttribute("href")))
   .filter(Boolean);
 

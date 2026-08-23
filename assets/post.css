@@ -1,0 +1,77 @@
+:root {
+  --diagram-arrow: var(--text-dim);
+}
+
+/* POST LAYOUT */
+.post { padding: 6rem 0 5rem; }
+.post-container { max-width: 760px; }
+.post-back {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+  transition: color 0.15s ease;
+}
+.post-back:hover { color: var(--cyan); }
+.post .term-badge { margin-bottom: 1.5rem; }
+.post-title {
+  font-family: var(--font-mono);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0.75rem 0 1rem;
+}
+.post-sub { color: var(--text-dim); font-size: 1.05rem; margin: 0 0 1.25rem; }
+.post-meta {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.post-meta .sep { margin: 0 0.6rem; }
+
+.post-body { color: var(--text-dim); font-size: 1.02rem; line-height: 1.75; }
+.post-body h2 { font-family: var(--font-mono); color: var(--text); font-size: 1.35rem; margin: 2.5rem 0 1rem; }
+.post-body p { margin: 0 0 1.25rem; }
+.post-body ul { margin: 0 0 1.5rem; padding-left: 1.3rem; }
+.post-body li { margin-bottom: 0.85rem; }
+.post-body strong { color: var(--text); }
+.post-body a { color: var(--cyan); }
+.post-body a:hover { text-decoration: underline; }
+.post-closing { border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 2rem; color: var(--text-dim); }
+
+/* ARCHITECTURE DIAGRAM */
+.diagram-wrap {
+  margin: 2rem 0 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 1.25rem;
+  overflow-x: auto;
+}
+.diagram-svg { width: 100%; height: auto; min-width: 640px; display: block; }
+.diagram-caption { margin: 0.9rem 0 0; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); }
+.diagram-lane-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  fill: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+.diagram-lane { fill: rgba(255, 255, 255, 0.015); stroke: var(--border); stroke-width: 1; }
+.diagram-box { stroke-width: 1; }
+.diagram-box-cyan { fill: rgba(34, 211, 238, 0.12); stroke: rgba(34, 211, 238, 0.45); }
+.diagram-box-green { fill: rgba(52, 232, 160, 0.12); stroke: rgba(52, 232, 160, 0.45); }
+.diagram-box-purple { fill: rgba(183, 148, 246, 0.12); stroke: rgba(183, 148, 246, 0.45); }
+.diagram-box-teal { fill: rgba(45, 212, 191, 0.12); stroke: rgba(45, 212, 191, 0.45); }
+.diagram-box-dim { fill: rgba(255, 255, 255, 0.03); stroke: var(--border); }
+.diagram-box-outline { fill: transparent; stroke: var(--border); stroke-dasharray: 4 3; }
+.diagram-box-text { font-family: var(--font-mono); font-size: 12px; fill: var(--text); text-anchor: middle; }
+.diagram-line { stroke: var(--text-dim); stroke-width: 1.5; fill: none; }
+.diagram-line-dashed { stroke-dasharray: 4 4; stroke: rgba(183, 148, 246, 0.5); }
+
+@media (max-width: 720px) {
+  .post { padding: 4rem 0 3.5rem; }
+}

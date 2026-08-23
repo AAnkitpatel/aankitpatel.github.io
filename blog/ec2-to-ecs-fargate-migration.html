@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Migrating 20+ Microservices from EC2 to ECS Fargate | Ankit Patel</title>
+    <meta name="description" content="How I moved a real-time gaming platform's 20+ microservices from EC2 to ECS Fargate with Terraform, blue-green deployments, and Drone CI &mdash; cutting costs 40% and shipping 85% faster with zero downtime." />
+    <meta name="author" content="Ankit Patel" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://aankitpatel.github.io/blog/ec2-to-ecs-fargate-migration.html" />
+
+    <meta property="og:title" content="Migrating 20+ Microservices from EC2 to ECS Fargate" />
+    <meta property="og:description" content="Terraform, blue-green deployments, and Drone CI: how a real-time gaming platform moved off EC2 with zero downtime, 40% lower costs, and 85% faster releases." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://aankitpatel.github.io/blog/ec2-to-ecs-fargate-migration.html" />
+    <meta property="og:image" content="https://aankitpatel.github.io/assets/profile.jpg" />
+    <meta name="theme-color" content="#0a0f10" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <link rel="stylesheet" href="../assets/post.css" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+  </head>
+
+  <body>
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="../index.html#home" class="nav-logo"><span class="prompt-icon">&gt;_</span> <span class="c-cyan">ankit</span><span class="c-dim">@</span><span class="c-green">devops</span><span class="c-dim">:~$</span></a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" id="navLinks">
+          <a href="../index.html#home">Home</a>
+          <a href="../index.html#about">About Me</a>
+          <a href="../index.html#skills">Skills</a>
+          <a href="../index.html#experience">Experience</a>
+          <a href="../index.html#projects">Projects</a>
+          <a href="../index.html#blog" class="active">Blog</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+        <a href="../index.html#contact" class="btn btn-outline nav-cta">Let's Connect</a>
+      </div>
+    </header>
+
+    <article class="post">
+      <div class="container post-container">
+        <a class="post-back" href="../index.html#blog">&larr; Back to blog</a>
+
+        <div class="term-badge">
+          <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+          <span class="term-path">~/ankit/blog/ec2-to-ecs-fargate-cost-cut.md</span>
+        </div>
+
+        <span class="pill pill-cyan">&lt; Cloud Migration /&gt;</span>
+        <h1 class="post-title">Migrating 20+ Microservices from EC2 to ECS Fargate</h1>
+        <p class="post-sub">How a real-time gaming platform moved off self-managed EC2 with zero downtime &mdash; and what actually made the 40% cost cut and 85% faster releases possible.</p>
+        <div class="post-meta">
+          <span>Ankit Patel</span>
+          <span class="sep">&middot;</span>
+          <span>W3Villa Technology</span>
+          <span class="sep">&middot;</span>
+          <span>~7 min read</span>
+        </div>
+
+        <div class="post-body">
+          <p>
+            At W3Villa I was the only DevOps engineer covering 20+ production platforms, including a real-time
+            multiplayer gaming stack running as 20+ containerized microservices directly on EC2. It worked, but it
+            was expensive to run and slow to change: every deploy meant hand-managing instance capacity, and scaling
+            for traffic spikes meant either over-provisioning year-round or reacting late.
+          </p>
+
+          <h2>The problem with EC2 for this workload</h2>
+          <p>
+            The services were already containerized, which made EC2 the wrong layer to keep managing by hand. We
+            were paying for peak capacity around the clock, patching and rotating instances ourselves, and deploys
+            were slow enough that rolling out a fix under load was a genuinely stressful event. None of that is a
+            knock on EC2 &mdash; it's just the wrong tool once you're already running everything in containers and need
+            fast, low-risk releases.
+          </p>
+
+          <h2>Why ECS Fargate</h2>
+          <p>
+            We didn't need Kubernetes-level flexibility for this stack, and I didn't want to take on cluster
+            operations as a team of one. ECS Fargate removed the EC2 fleet entirely &mdash; no AMIs to patch, no
+            capacity to pre-provision &mdash; while keeping the container workflow the team already knew. Terraform
+            became the single source of truth for the ECS services, task definitions, ALB target groups, and IAM
+            roles, so every environment was reproducible instead of hand-built.
+          </p>
+
+          <h2>Architecture</h2>
+          <p>
+            The traffic path is a standard ALB-in-front-of-ECS-Fargate setup, but the piece that mattered most was
+            the deploy path: Drone CI builds and pushes the image, then deploys to a second ("green") target group
+            behind the same ALB. Traffic only cuts over after health checks pass, and the previous ("blue") target
+            group stays warm for an immediate rollback if something looks wrong.
+          </p>
+
+          <div class="diagram-wrap" role="img" aria-label="Architecture diagram: users route through an Application Load Balancer to ECS Fargate blue and green target groups backed by RDS and ElastiCache; a Drone CI pipeline builds images, pushes to ECR, and deploys to the green target group before the ALB cuts traffic over; Terraform provisions the ALB, ECS cluster, RDS, and IAM roles.">
+            <svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg" class="diagram-svg">
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M0,0 L10,5 L0,10 z" fill="var(--diagram-arrow)"></path>
+                </marker>
+              </defs>
+
+              <text x="16" y="28" class="diagram-lane-label">traffic path</text>
+              <rect x="16" y="40" width="968" height="110" rx="10" class="diagram-lane"></rect>
+
+              <rect x="36" y="70" width="110" height="50" rx="8" class="diagram-box diagram-box-cyan"></rect>
+              <text x="91" y="100" class="diagram-box-text">Users</text>
+
+              <rect x="196" y="70" width="140" height="50" rx="8" class="diagram-box diagram-box-cyan"></rect>
+              <text x="266" y="94" class="diagram-box-text">Application</text>
+              <text x="266" y="110" class="diagram-box-text">Load Balancer</text>
+
+              <rect x="386" y="55" width="170" height="40" rx="8" class="diagram-box diagram-box-green"></rect>
+              <text x="471" y="80" class="diagram-box-text">ECS Fargate (blue)</text>
+
+              <rect x="386" y="105" width="170" height="40" rx="8" class="diagram-box diagram-box-dim"></rect>
+              <text x="471" y="130" class="diagram-box-text">ECS Fargate (green)</text>
+
+              <rect x="606" y="70" width="80" height="50" rx="8" class="diagram-box diagram-box-purple"></rect>
+              <text x="646" y="100" class="diagram-box-text">RDS</text>
+
+              <rect x="716" y="70" width="120" height="50" rx="8" class="diagram-box diagram-box-purple"></rect>
+              <text x="776" y="94" class="diagram-box-text">ElastiCache</text>
+              <text x="776" y="110" class="diagram-box-text">(Redis)</text>
+
+              <line x1="146" y1="95" x2="192" y2="95" class="diagram-line" marker-end="url(#arrow)"></line>
+              <line x1="336" y1="95" x2="382" y2="75" class="diagram-line" marker-end="url(#arrow)"></line>
+              <line x1="336" y1="95" x2="382" y2="125" class="diagram-line" marker-end="url(#arrow)"></line>
+              <line x1="556" y1="95" x2="602" y2="95" class="diagram-line" marker-end="url(#arrow)"></line>
+              <line x1="686" y1="95" x2="712" y2="95" class="diagram-line" marker-end="url(#arrow)"></line>
+
+              <text x="16" y="188" class="diagram-lane-label">deploy pipeline</text>
+              <rect x="16" y="200" width="968" height="110" rx="10" class="diagram-lane"></rect>
+
+              <rect x="36" y="230" width="110" height="50" rx="8" class="diagram-box diagram-box-teal"></rect>
+              <text x="91" y="252" class="diagram-box-text">Git push</text>
+              <text x="91" y="268" class="diagram-box-text">to main</text>
+
+              <rect x="196" y="230" width="110" height="50" rx="8" class="diagram-box diagram-box-teal"></rect>
+              <text x="251" y="260" class="diagram-box-text">Drone CI</text>
+
+              <rect x="356" y="230" width="140" height="50" rx="8" class="diagram-box diagram-box-teal"></rect>
+              <text x="426" y="252" class="diagram-box-text">Build &amp; push</text>
+              <text x="426" y="268" class="diagram-box-text">image to ECR</text>
+
+              <rect x="546" y="230" width="160" height="50" rx="8" class="diagram-box diagram-box-dim"></rect>
+              <text x="626" y="252" class="diagram-box-text">Deploy to</text>
+              <text x="626" y="268" class="diagram-box-text">Green target group</text>
+
+              <rect x="756" y="230" width="200" height="50" rx="8" class="diagram-box diagram-box-green"></rect>
+              <text x="856" y="252" class="diagram-box-text">Health check pass &rarr;</text>
+              <text x="856" y="268" class="diagram-box-text">ALB cuts traffic over</text>
+
+              <line x1="146" y1="255" x2="192" y2="255" class="diagram-line" marker-end="url(#arrow)"></line>
+              <line x1="306" y1="255" x2="352" y2="255" class="diagram-line" marker-end="url(#arrow)"></line>
+              <line x1="496" y1="255" x2="542" y2="255" class="diagram-line" marker-end="url(#arrow)"></line>
+              <line x1="706" y1="255" x2="752" y2="255" class="diagram-line" marker-end="url(#arrow)"></line>
+
+              <text x="16" y="348" class="diagram-lane-label">infrastructure as code</text>
+              <rect x="16" y="360" width="968" height="100" rx="10" class="diagram-lane"></rect>
+
+              <rect x="36" y="385" width="130" height="50" rx="8" class="diagram-box diagram-box-cyan"></rect>
+              <text x="101" y="415" class="diagram-box-text">Terraform</text>
+
+              <rect x="216" y="385" width="748" height="50" rx="8" class="diagram-box diagram-box-outline"></rect>
+              <text x="590" y="415" class="diagram-box-text">provisions: ALB &middot; ECS Cluster &amp; Services &middot; RDS &middot; IAM roles</text>
+
+              <line x1="166" y1="410" x2="212" y2="410" class="diagram-line" marker-end="url(#arrow)"></line>
+            </svg>
+            <p class="diagram-caption">Color key: green = actively serving traffic, gray = standby target group.</p>
+          </div>
+
+          <h2>What actually moved the numbers</h2>
+          <ul>
+            <li>
+              <strong>Cost (&minus;40%):</strong> Fargate billed per task instead of per always-on instance, and
+              right-sizing task CPU/memory per service &mdash; instead of one EC2 instance size for everything &mdash;
+              removed most of the over-provisioning we'd been carrying.
+            </li>
+            <li>
+              <strong>Deploy speed (&minus;85%):</strong> blue-green through Terraform-managed target groups meant a
+              release was a target-group swap, not a manual instance-by-instance rollout. What used to take a
+              coordinated maintenance window became a routine CI job.
+            </li>
+            <li>
+              <strong>Zero downtime:</strong> the green target group only takes traffic after ALB health checks
+              pass, and the blue group stays live in parallel, so a bad deploy is a target-group swap back, not an
+              incident.
+            </li>
+          </ul>
+
+          <h2>What I'd do differently</h2>
+          <p>
+            Fargate's per-task pricing rewards right-sizing, and I under-invested in that early &mdash; a couple of
+            services ran over-provisioned for weeks before I went back through CPU/memory metrics per task and
+            tightened them. If I were starting the migration again, I'd bake that review into the Terraform module
+            from day one instead of treating it as cleanup afterward.
+          </p>
+
+          <p class="post-closing">
+            This is the same migration referenced in the
+            <a href="../index.html#projects">Key Projects</a> section &mdash; this post is the longer version of how
+            it actually got built. Questions about the setup? <a href="../index.html#contact">Get in touch</a>.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <p class="nav-logo"><span class="prompt-icon">&gt;_</span> <span class="c-cyan">ankit</span><span class="c-dim">@</span><span class="c-green">devops</span></p>
+          <p class="footer-blurb">DevOps Engineer working with AWS, Kubernetes, and MLOps. Based in Noida, India.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#home">&gt; Home</a></li>
+            <li><a href="../index.html#about">&gt; About</a></li>
+            <li><a href="../index.html#projects">&gt; Projects</a></li>
+            <li><a href="../index.html#blog">&gt; Blog</a></li>
+            <li><a href="../index.html#contact">&gt; Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <div class="social-row">
+            <a href="https://github.com/aankitpatel" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" class="icon"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/ankit-patel-58916516b" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" class="icon"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="mailto:a.ankitpatel01@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" class="icon"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 6 12 13 2 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Ankit Patel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/script.js"></script>
+  </body>
+</html>
