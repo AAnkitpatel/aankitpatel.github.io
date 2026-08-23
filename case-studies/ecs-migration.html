@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Migrating a SaaS Platform from Docker Compose to ECS Fargate | Ankit Patel</title>
+    <meta name="description" content="Case study: re-architecting a two-instance Docker Compose monolith into an 8-microservice architecture on ECS Fargate, with Secrets Manager, TLS-enforced Redis, RTMP streaming via NLB, and SES." />
+    <meta name="author" content="Ankit Patel" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://aankitpatel.github.io/case-studies/ecs-migration.html" />
+
+    <meta property="og:title" content="Migrating a SaaS Platform from Docker Compose to ECS Fargate" />
+    <meta property="og:description" content="Case study: re-architecting a two-instance Docker Compose monolith into an 8-microservice architecture on ECS Fargate." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://aankitpatel.github.io/case-studies/ecs-migration.html" />
+    <meta property="og:image" content="https://aankitpatel.github.io/assets/profile.jpg" />
+    <meta name="theme-color" content="#0a0f10" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <link rel="stylesheet" href="../assets/post.css" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+  </head>
+
+  <body>
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="../index.html#home" class="nav-logo"><span class="prompt-icon">&gt;_</span> <span class="c-cyan">ankit</span><span class="c-dim">@</span><span class="c-green">devops</span><span class="c-dim">:~$</span></a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" id="navLinks">
+          <a href="../index.html#home">Home</a>
+          <a href="../index.html#about">About Me</a>
+          <a href="../index.html#skills">Skills</a>
+          <a href="../index.html#experience">Experience</a>
+          <a href="../index.html#projects" class="active">Projects</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+        <a href="https://linkedin.com/in/ankit-patel-58916516b" target="_blank" rel="noopener" class="btn btn-outline nav-cta">Connect on LinkedIn</a>
+      </div>
+    </header>
+
+    <article class="post">
+      <div class="container post-container">
+        <a class="post-back" href="../index.html#projects">&larr; Back to projects</a>
+
+        <span class="pill pill-green">Case Study &middot; Cloud Migration</span>
+        <h1 class="post-title">Migrating a SaaS Platform from Docker Compose to ECS Fargate</h1>
+        <p class="post-sub">Re-architecting a two-instance Docker Compose monolith into an 8-microservice architecture on ECS Fargate.</p>
+        <div class="post-meta">
+          <div class="post-meta-line">Role: Solo DevOps engineer (architecture, migration, cutover)</div>
+          <div class="post-meta-line">Stack: AWS ECS Fargate &middot; ElastiCache Redis &middot; S3 &middot; Secrets Manager &middot; SES &middot; NLB</div>
+        </div>
+
+        <div class="diagram-slot">
+          Architecture diagram placeholder &mdash; add a diagram image here when available.
+        </div>
+
+        <div class="post-body">
+          <h2>The problem</h2>
+          <p>
+            The platform was running its entire backend on two EC2 instances using Docker Compose. This meant no
+            service isolation, manual deploys, no autoscaling per service, and a single point of failure for the
+            whole platform. As the product grew, this setup couldn't support independent scaling of different
+            services or safe rollouts without risking the whole stack.
+          </p>
+
+          <h2>What I did</h2>
+          <ul>
+            <li>
+              Re-architected the monolithic Compose setup into an 8-microservice architecture running on ECS
+              Fargate, giving each service its own task definition, scaling policy, and deployment lifecycle.
+            </li>
+            <li>
+              Migrated environment configuration out of <code>.env</code> files and into AWS Secrets Manager, using
+              structured JSON so services could pull scoped secrets at runtime instead of baking them into images
+              or Compose files.
+            </li>
+            <li>
+              Integrated ElastiCache Redis with TLS enforced in transit, replacing a self-hosted Redis container
+              that had no encryption and was a shared dependency across services.
+            </li>
+            <li>
+              Debugged and resolved CORS failures and S3 presigned URL issues that surfaced once services were
+              split apart and started hitting each other across network boundaries instead of talking over
+              localhost.
+            </li>
+            <li>
+              Set up self-hosted analytics tooling on EC2, including migrating its datastore to RDS for durability
+              instead of running it as a throwaway container.
+            </li>
+            <li>
+              Built an NLB-based ingress path for RTMP traffic to support a live webinar/streaming service, since
+              ALB doesn't support the RTMP protocol and this needed a different load balancing layer than the rest
+              of the HTTP services.
+            </li>
+            <li>
+              Configured transactional email (SES) identity verification and SMTP credentials, moving off an old
+              EC2-hosted mail setup.
+            </li>
+          </ul>
+
+          <h2>Result</h2>
+          <ul>
+            <li>Went from 2 monolithic EC2 instances to 8 independently deployable services on Fargate.</li>
+            <li>Secrets are no longer stored in plaintext env files anywhere in the stack.</li>
+          </ul>
+
+          <p class="post-closing">
+            Questions about the setup? <a href="../index.html#contact">Get in touch</a>.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <p class="nav-logo"><span class="prompt-icon">&gt;_</span> <span class="c-cyan">ankit</span><span class="c-dim">@</span><span class="c-green">devops</span></p>
+          <p class="footer-blurb">DevOps Engineer working with AWS, Kubernetes, and cloud infrastructure. Based in Noida, India.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#home">&gt; Home</a></li>
+            <li><a href="../index.html#about">&gt; About</a></li>
+            <li><a href="../index.html#projects">&gt; Projects</a></li>
+            <li><a href="../index.html#contact">&gt; Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <div class="social-row">
+            <a href="https://github.com/aankitpatel" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" class="icon"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/ankit-patel-58916516b" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" class="icon"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="mailto:a.ankitpatel01@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" class="icon"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 6 12 13 2 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Ankit Patel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cutting Infrastructure Costs with a Multi-Cloud Comparison | Ankit Patel</title>
+    <meta name="description" content="Case study: provisioning a full production architecture and benchmarking real INR pricing across an Indian cloud provider, AWS, and GCP to inform an infrastructure decision." />
+    <meta name="author" content="Ankit Patel" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://aankitpatel.github.io/case-studies/cloud-cost-comparison.html" />
+
+    <meta property="og:title" content="Cutting Infrastructure Costs with a Multi-Cloud Comparison" />
+    <meta property="og:description" content="Case study: provisioning a full production architecture and benchmarking real INR pricing across an Indian cloud provider, AWS, and GCP." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://aankitpatel.github.io/case-studies/cloud-cost-comparison.html" />
+    <meta property="og:image" content="https://aankitpatel.github.io/assets/profile.jpg" />
+    <meta name="theme-color" content="#0a0f10" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <link rel="stylesheet" href="../assets/post.css" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+  </head>
+
+  <body>
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="../index.html#home" class="nav-logo"><span class="prompt-icon">&gt;_</span> <span class="c-cyan">ankit</span><span class="c-dim">@</span><span class="c-green">devops</span><span class="c-dim">:~$</span></a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" id="navLinks">
+          <a href="../index.html#home">Home</a>
+          <a href="../index.html#about">About Me</a>
+          <a href="../index.html#skills">Skills</a>
+          <a href="../index.html#experience">Experience</a>
+          <a href="../index.html#projects" class="active">Projects</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+        <a href="https://linkedin.com/in/ankit-patel-58916516b" target="_blank" rel="noopener" class="btn btn-outline nav-cta">Connect on LinkedIn</a>
+      </div>
+    </header>
+
+    <article class="post">
+      <div class="container post-container">
+        <a class="post-back" href="../index.html#projects">&larr; Back to projects</a>
+
+        <span class="pill pill-purple">Case Study &middot; Infrastructure as Code</span>
+        <h1 class="post-title">Cutting Infrastructure Costs with a Multi-Cloud Comparison</h1>
+        <p class="post-sub">Provisioning a full production architecture and benchmarking real pricing across an Indian cloud provider, AWS, and GCP.</p>
+        <div class="post-meta">
+          <div class="post-meta-line">Role: Solo DevOps engineer (architecture, provisioning, cost analysis)</div>
+          <div class="post-meta-line">Stack: E2E Networks &middot; Terraform &middot; PostgreSQL/Redis DBaaS &middot; Autoscaling Groups &middot; CDN &middot; Cloudflare</div>
+        </div>
+
+        <div class="diagram-slot">
+          Architecture diagram placeholder &mdash; add a diagram image here when available.
+        </div>
+
+        <div class="post-body">
+          <h2>The problem</h2>
+          <p>
+            The client needed a full production architecture (VPC, database layer, autoscaling API and worker
+            tiers, CDN, load balancing) and wanted to know whether AWS, GCP, or an Indian cloud provider gave the
+            best cost-to-performance ratio before committing infrastructure spend.
+          </p>
+
+          <h2>What I did</h2>
+          <ul>
+            <li>
+              Provisioned a full 10-resource production architecture: VPC, managed PostgreSQL and Redis (DBaaS),
+              an autoscaling API server tier, a worker tier, CDN, and a load balancer.
+            </li>
+            <li>
+              Hit a persistent ALB 503 error under load and traced it to how the ASG-based backend groups were
+              registering targets.
+            </li>
+            <li>
+              Built a detailed cost comparison report benchmarking equivalent specs across the Indian cloud
+              provider, AWS, and GCP, priced in INR, so the client could compare real numbers instead of list
+              prices in USD.
+            </li>
+            <li>
+              Migrated DNS to Cloudflare with Flexible SSL, reconfigured the load balancer to work behind
+              Cloudflare's edge, and set up a 301 apex-to-www redirect using Cloudflare Redirect Rules.
+            </li>
+          </ul>
+
+          <h2>Result</h2>
+          <ul>
+            <li>
+              The cost report concluded the Indian cloud provider was 50-70% cheaper than AWS/GCP at equivalent
+              specs, giving the client a concrete number to base their infrastructure decision on.
+            </li>
+          </ul>
+
+          <p class="post-closing">
+            Questions about the setup? <a href="../index.html#contact">Get in touch</a>.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <p class="nav-logo"><span class="prompt-icon">&gt;_</span> <span class="c-cyan">ankit</span><span class="c-dim">@</span><span class="c-green">devops</span></p>
+          <p class="footer-blurb">DevOps Engineer working with AWS, Kubernetes, and cloud infrastructure. Based in Noida, India.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#home">&gt; Home</a></li>
+            <li><a href="../index.html#about">&gt; About</a></li>
+            <li><a href="../index.html#projects">&gt; Projects</a></li>
+            <li><a href="../index.html#contact">&gt; Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <div class="social-row">
+            <a href="https://github.com/aankitpatel" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" class="icon"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/ankit-patel-58916516b" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" class="icon"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="mailto:a.ankitpatel01@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" class="icon"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 6 12 13 2 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Ankit Patel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/script.js"></script>
+  </body>
+</html>
