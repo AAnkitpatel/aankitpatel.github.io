@@ -67,6 +67,7 @@
           <a href="#about">About Me</a>
           <a href="#skills">Skills</a>
           <a href="#experience">Experience</a>
+          <a href="#open-source">Open Source</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -119,7 +120,7 @@
           <div class="snapshot-col">
             <div class="snapshot-card">
               <span class="snapshot-label">identity</span>
-              <h3 class="snapshot-name">Ankit Patel</h3>
+              <p class="snapshot-name">Ankit Patel</p>
               <p class="snapshot-role">Cloud &amp; DevOps Engineer</p>
               <p class="snapshot-loc">
                 <svg viewBox="0 0 24 24" class="icon-sm"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -380,6 +381,41 @@
       </div>
     </section>
 
+    <section class="section" id="open-source">
+      <div class="container">
+        <div class="section-head">
+          <span class="pill pill-green">Community</span>
+          <h2 class="grad-heading">Open Source</h2>
+          <p class="section-sub">Tools I build and maintain in the open</p>
+        </div>
+        <article class="project-card accent-cyan oss-card">
+          <div class="oss-body">
+            <div class="project-top">
+              <div class="project-icon"><svg viewBox="0 0 24 24" class="icon"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+              <span class="project-date">Desktop app &middot; MIT licence &middot; v1.1.0</span>
+            </div>
+            <h3>K8sConsole: one desktop console for Kubernetes and Amazon ECS</h3>
+            <p>An agent-free desktop app for running production workloads. For Kubernetes it gives live resources and YAML, cluster maps, monitoring, logs, pod shells, Helm, a security scan and RBAC tools. For Amazon ECS it covers services, tasks, task definitions, CloudWatch logs and metrics, and a service map, all from your existing kubeconfig and AWS profiles.</p>
+            <ul class="oss-points">
+              <li>AWS connections are read-only by default, enforced below the UI on every SDK call</li>
+              <li>Sandboxed Electron UI with no network access; credentials never leave the main process</li>
+              <li>An optional AI assistant that investigates with read-only tools and proposes fixes for review</li>
+            </ul>
+            <div class="tags"><span>TypeScript</span><span>Electron</span><span>React</span><span>Kubernetes</span><span>Amazon ECS</span><span>AWS SDK</span><span>GitHub Actions</span></div>
+            <div class="oss-links">
+              <a class="btn btn-primary" href="https://aankitpatel.github.io/k8sconsole/" target="_blank" rel="noopener">Website</a>
+              <a class="btn btn-outline-cyan" href="https://github.com/AAnkitpatel/k8sconsole" target="_blank" rel="noopener">Source on GitHub</a>
+              <a class="btn btn-outline-green" href="https://github.com/AAnkitpatel/k8sconsole/releases/latest" target="_blank" rel="noopener">Download for Linux</a>
+            </div>
+            <p class="oss-note">Contributions welcome: read the <a href="https://github.com/AAnkitpatel/k8sconsole/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">contributing guide</a>, or pick an issue labelled <a href="https://github.com/AAnkitpatel/k8sconsole/labels/good%20first%20issue" target="_blank" rel="noopener">good first issue</a>.</p>
+          </div>
+          <a class="oss-shot" href="https://aankitpatel.github.io/k8sconsole/" target="_blank" rel="noopener">
+            <img src="assets/k8sconsole.webp" width="1200" height="695" loading="lazy" alt="K8sConsole Amazon ECS service map: load balancer, target group, services, tasks and task definitions, coloured by health" />
+          </a>
+        </article>
+      </div>
+    </section>
+
     <section class="section" id="projects">
       <div class="container">
         <div class="section-head">
@@ -559,16 +595,17 @@
           <p class="footer-blurb">DevOps Engineer working with AWS, Kubernetes, and cloud infrastructure. Based in Noida, India.</p>
         </div>
         <div>
-          <h4>Quick Links</h4>
+          <h2 class="footer-title">Quick Links</h2>
           <ul class="footer-links">
             <li><a href="#home">&gt; Home</a></li>
             <li><a href="#about">&gt; About</a></li>
+            <li><a href="#open-source">&gt; Open Source</a></li>
             <li><a href="#projects">&gt; Projects</a></li>
             <li><a href="#contact">&gt; Contact</a></li>
           </ul>
         </div>
         <div>
-          <h4>Connect</h4>
+          <h2 class="footer-title">Connect</h2>
           <div class="social-row">
             <a href="https://github.com/aankitpatel" target="_blank" rel="noopener" aria-label="GitHub">
               <svg viewBox="0 0 24 24" class="icon"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>

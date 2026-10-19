@@ -76,7 +76,13 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.85rem;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
+  white-space: nowrap;
   transition: color 0.15s ease, background 0.15s ease;
+}
+@media (max-width: 1240px) and (min-width: 1001px) {
+  .nav-inner { gap: 1rem; }
+  .nav-links { gap: 0.3rem; }
+  .nav-links a { padding: 0.4rem 0.55rem; }
 }
 .nav-links a:hover { color: var(--text); }
 .nav-links a.active {
@@ -494,7 +500,8 @@ a { color: inherit; text-decoration: none; }
 .footer { padding: 3.5rem 0 0; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.5rem; padding-bottom: 2.5rem; }
 .footer-blurb { color: var(--text-dim); font-size: 0.9rem; margin-top: 0.75rem; max-width: 320px; }
-.footer h4 { font-family: var(--font-mono); color: var(--cyan); font-size: 0.85rem; margin: 0 0 1rem; }
+.footer h4,
+.footer .footer-title { font-family: var(--font-mono); color: var(--cyan); font-size: 0.85rem; margin: 0 0 1rem; }
 .footer-links { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
 .footer-links a { color: var(--text-dim); font-family: var(--font-mono); font-size: 0.88rem; }
 .footer-links a:hover { color: var(--cyan); }
@@ -522,4 +529,31 @@ a { color: inherit; text-decoration: none; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .timeline { padding-left: 1.5rem; }
   .timeline-meta { align-items: flex-start; }
+}
+
+/* Open Source */
+.oss-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 2rem; align-items: center; }
+.oss-card h3 { font-size: 1.25rem; }
+.oss-points { margin: 0.4rem 0 1rem; padding-left: 1.1rem; color: var(--text-dim); font-size: 0.92rem; }
+.oss-points li { margin: 0.35rem 0; }
+.oss-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.2rem 0 0.8rem; }
+.oss-note { font-size: 0.85rem; margin: 0; }
+.oss-shot { display: block; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+.oss-shot img { display: block; width: 100%; height: auto; }
+@media (max-width: 900px) {
+  .oss-card { grid-template-columns: 1fr; }
+  .oss-shot { order: -1; }
+}
+
+/* Below 1000px the links move into the hamburger menu. */
+@media (max-width: 1000px) {
+  .nav-links {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+    flex-direction: column; padding: 1rem 1.5rem; gap: 0.75rem; display: none;
+  }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: flex; }
+  .nav-cta { display: none; }
+  .nav-inner { justify-content: space-between; }
 }
