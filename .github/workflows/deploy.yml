@@ -1,0 +1,57 @@
+name: Deploy site
+
+# Deploys on every push to main and tags each deployed version (site-YYYYMMDD-HHMMSS).
+# Rollback: Actions → "Deploy site" → Run workflow → enter an earlier site-* tag or commit SHA.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Tag, branch or commit to deploy (an earlier site-* tag rolls back)
+        required: true
+        default: main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+      - name: Check the site is complete
+        run: |
+          for f in index.html assets/style.css assets/script.js; do test -s "$f" || { echo "missing $f"; exit 1; }; done
+      - name: Stage the files to publish
+        run: |
+          mkdir _site
+          rsync -a --exclude '.git' --exclude '.github' --exclude '.claude' --exclude 'ROLLBACK.md' --exclude '_site' ./ _site/
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v5
+      - name: Tag the deployed version
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          tag="site-$(date -u +%Y%m%d-%H%M%S)"
+          git tag -a "$tag" -m "Deployed by run ${{ github.run_id }}" && git push origin "$tag"
+          echo "Deployed and tagged $tag" >> "$GITHUB_STEP_SUMMARY"
+      - name: Note a rollback deployment
+        if: github.event_name == 'workflow_dispatch'
+        run: echo "Deployed ${{ inputs.ref }} ($(git rev-parse --short HEAD)). The next push to main deploys main again." >> "$GITHUB_STEP_SUMMARY"
