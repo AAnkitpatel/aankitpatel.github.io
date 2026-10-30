@@ -392,7 +392,7 @@
           <div class="oss-body">
             <div class="project-top">
               <div class="project-icon"><svg viewBox="0 0 24 24" class="icon"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
-              <span class="project-date">Linux &middot; macOS &middot; Windows &middot; MIT &middot; v1.3.0</span>
+              <span class="project-date">Linux &middot; macOS &middot; Windows &middot; MIT &middot; v1.4.0</span>
             </div>
             <h3>K8sConsole: one desktop console for Kubernetes and Amazon ECS</h3>
             <p>An agent-free desktop app for Linux, macOS and Windows for running production workloads. For Kubernetes it gives live resources and YAML, cluster maps, monitoring, logs, pod shells, Helm, a security scan and RBAC tools. For Amazon ECS it covers services, tasks, task definitions, CloudWatch logs and metrics, and a service map, all from your existing kubeconfig and AWS profiles.</p>
@@ -400,9 +400,11 @@
               <li>AWS connections are read-only by default, enforced below the UI on every SDK call</li>
               <li>Sandboxed Electron UI with no network access; credentials never leave the main process</li>
               <li>An optional AI assistant that investigates with read-only tools and proposes fixes for review</li>
+              <li>GitOps (Flux and Argo CD), cost monitoring with rightsizing, and image vulnerability scanning for Kubernetes and ECS</li>
+              <li>A built-in MCP server so AI tools like Claude Code can read clusters through it, plus safe declarative extensions</li>
               <li>Secure supply chain: CodeQL, dependency review, fuzz tests, a CycloneDX SBOM and signed SLSA provenance for every release</li>
             </ul>
-            <div class="tags"><span>TypeScript</span><span>Electron</span><span>React</span><span>Kubernetes</span><span>Amazon ECS</span><span>AWS SDK</span><span>GitHub Actions</span><span>SLSA</span><span>CodeQL</span></div>
+            <div class="tags"><span>TypeScript</span><span>Electron</span><span>React</span><span>Kubernetes</span><span>Amazon ECS</span><span>AWS SDK</span><span>GitHub Actions</span><span>SLSA</span><span>CodeQL</span><span>MCP</span><span>GitOps</span></div>
             <div class="oss-links">
               <a class="btn btn-primary" href="https://aankitpatel.github.io/k8sconsole/" target="_blank" rel="noopener">Website</a>
               <a class="btn btn-outline-cyan" href="https://github.com/AAnkitpatel/k8sconsole" target="_blank" rel="noopener">Source on GitHub</a>
